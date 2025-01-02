@@ -2,12 +2,12 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">
+      <SelectionState runConfigName="NameFinder">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-01T19:41:56.567803700Z">
+        <DropdownSelection timestamp="2025-01-02T13:13:54.679508600Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\41766\.android\avd\Small_Phone_API_33.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\41766\.android\avd\Samsung_Galaxy_S20_FE_API_33.avd" />
             </handle>
           </Target>
         </DropdownSelection>
