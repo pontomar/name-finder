@@ -75,7 +75,7 @@ fun NameFinder(
                             tint = Color.White
                         )
                     }
-                    IconButton(onClick = { navController.navigate("StartPage") }) {
+                    IconButton(onClick = { navController.navigate("FavoriteNamesScreen") }) {
                         Icon(
                             Icons.Filled.Home,
                             contentDescription = "See favorite Baby Names",
