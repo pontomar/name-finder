@@ -10,13 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.namefinder.ui.theme.NameFinderTheme
-import com.example.namefinder.ui.theme.ocher
+import com.example.namefinder.ui.theme.Pink40
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(color = Color(0xFF8F4082))
+                        .background(color = Pink40)
                 ) { innerPadding ->
                     val navController = rememberNavController()
                     val model: NameFinderViewModel = viewModel()

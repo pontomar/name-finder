@@ -17,21 +17,21 @@ class NameFinderViewModel(application: Application) : AndroidViewModel(applicati
     var boyNames by mutableStateOf<List<BabyName>>(emptyList())
         private set
 
-    private val _selectedNames = mutableListOf<BabyName>()
-    val selectedNames: List<BabyName> get() = _selectedNames
+    private val _selectedNames = mutableStateOf<List<BabyName>>(listOf())
+    val selectedNames: List<BabyName> get() = _selectedNames.value
 
     init {
         // Load names from CSV files when ViewModel is created
         loadNames()
     }
 
-    fun addSelectedName(name: BabyName){
-        _selectedNames.add(name)
+    fun addSelectedName(babyName: BabyName){
+        _selectedNames.value += babyName
     }
 
 
-    fun removeSelectedName(name: BabyName){
-        _selectedNames.remove(name)
+    fun removeSelectedName(babyName: BabyName){
+        _selectedNames.value = _selectedNames.value.filter {it != babyName}
     }
 
     fun getSelectNames(): List<BabyName> {
@@ -52,7 +52,9 @@ class NameFinderViewModel(application: Application) : AndroidViewModel(applicati
                 BabyName(
                     name = row["name"] ?: "", // Adjust to match the actual header
                     unisex = row["gender"]?.toIntOrNull() ?: 0,
-                    biblical = row["biblical"]?.toIntOrNull() ?: 0
+                    altSpelling = row["alt_spellings"] ?: "",
+                    biblical = row["biblical"]?.toIntOrNull() ?: 0,
+                    gender = Gender.UNDEFINED
                 )
             }
         } catch (e: Exception) {
@@ -62,8 +64,24 @@ class NameFinderViewModel(application: Application) : AndroidViewModel(applicati
     }
 }
 
+private fun assignGender(names: List<BabyName>, inputGender: Gender?): List<BabyName> {
+    return names.map { babyName ->
+        if (inputGender != null) {
+            babyName.copy(gender = inputGender)
+        } else {
+            babyName
+        }
+    }
+}
+
 data class BabyName(
     val name: String,
     val unisex: Int,
-    val biblical: Int
+    val altSpelling: String,
+    val biblical: Int,
+    val gender: Gender
 )
+
+enum class Gender {
+    FEMALE, MALE, UNDEFINED
+}

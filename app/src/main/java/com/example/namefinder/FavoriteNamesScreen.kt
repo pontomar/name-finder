@@ -62,6 +62,8 @@ fun FavoriteNamesScreen(
         }
     }
 
+    val favoriteNames = model.selectedNames
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -74,27 +76,27 @@ fun FavoriteNamesScreen(
     ) {
         Spacer(modifier = Modifier.size(50.dp))
         Text(
-            "FAVORITE NAMES", fontSize = 25.sp, fontWeight = FontWeight.Bold, color = Color.White
+            "Favorite Baby Names", fontSize = 25.sp, fontWeight = FontWeight.Light, color = Color.White
         )
-        Spacer(modifier = Modifier.size(50.dp))
+        Spacer(modifier = Modifier.size(30.dp))
 
         Card(
             colors = CardDefaults.cardColors(containerColor = Color(0xFFC79FC0)),
             modifier = Modifier.padding(30.dp, 10.dp)
         ) {
-            FavoriteList(model.getSelectNames(), model = model)
+            FavoriteList(favoriteNames, model = model)
             // UserInputRow()
         }
         Spacer(modifier = Modifier.size(30.dp))
         Button(
             onClick = { navController.navigate("NameFinder") },
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFC79FC0)
+                containerColor = Color.White
             ),
             shape = RoundedCornerShape(16.dp),
 
             ) {
-            Text("Discover Baby Names", color = Color.Black)
+            Text("Discover Baby Names", fontWeight = FontWeight.SemiBold , color =  Color(0xFF8F4082) )
 
         }
 
@@ -116,11 +118,13 @@ fun FavoriteRow(favorite: BabyName, model: NameFinderViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = favorite.name,
-            fontSize = 20.sp,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier
                 .weight(1f)
                 .padding(20.dp, 6.dp)
@@ -129,7 +133,7 @@ fun FavoriteRow(favorite: BabyName, model: NameFinderViewModel) {
             Icon(
                 Icons.Filled.Info,
                 contentDescription = "Show Information about this name",
-                tint = Color.Black,
+                tint = Color.DarkGray,
                 modifier = Modifier
                     .height(24.dp)
                     .width(24.dp)
@@ -154,11 +158,11 @@ fun FavoriteRow(favorite: BabyName, model: NameFinderViewModel) {
             }
         }
 
-        IconButton(onClick = { model.removeSelectedName(favorite) }) {
+        IconButton(onClick = { model.removeSelectedName(favorite)}) {
             Icon(
                 Icons.Filled.Delete,
                 contentDescription = "Remove Name from List",
-                tint = Color.Black,
+                tint = Color.DarkGray,
                 modifier = Modifier
                     .height(24.dp)
                     .width(24.dp)
